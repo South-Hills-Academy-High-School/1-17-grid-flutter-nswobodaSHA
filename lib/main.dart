@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget Build(BuildContext context) {
+  Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
@@ -21,5 +21,14 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
       ),
     );
+  }
+}
+
+class MyAppState extends ChangeNotifier {}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Text('Hello!'));
   }
 }
