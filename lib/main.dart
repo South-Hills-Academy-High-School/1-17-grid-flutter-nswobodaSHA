@@ -24,24 +24,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyAppState extends ChangeNotifier {}
+class MyAppState extends ChangeNotifier {
+  var opacityList = [1.0. 1.0, 1.0, 1.0, 1.0. 1.0, 1.0, 1.0, 1.0];
+}
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
     return Scaffold(
         body: GridView.builder(
+      itemCount: 9,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
       ),
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(8),
-          child: Container(
+        return Opacity(
+          opacity: 0.5,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: SizedBox(
               height: 50,
               width: 50,
-              color: Colors.blueGrey[700],
-              child: Image(image: Image.network())),
+              child: Material(
+                color: Colors.blueGrey[700],
+                child: InkWell(
+                  child: Image.network(
+                      'https://hips.hearstapps.com/hmg-prod/images/speedkore-carbon-fiber-demon-01-1595948722.jpg?crop=0.842xw:0.630xh;0.0850xw,0.321xh&resize=1200:*'),
+                  onTap: () {},
+                ),
+              ),
+            ),
+          ),
         );
       },
     ));
